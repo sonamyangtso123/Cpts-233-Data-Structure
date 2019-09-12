@@ -33,6 +33,26 @@ stages:
    exit 1;
    fi
 
+# This is a template for all HW test templates to encompass dependencies and such
+#  It is used as a base for all HW written assignments
+.hw-test:
+    stage: assignment-tests
+    before_script:
+        - echo "Testing homework - $ASSIGNMENT_DIR"
+        - *projectmergetest
+        - echo "http://dl-3.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
+        - echo "http://dl-3.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+        - apk add --update make bash >> /dev/null
+        - cd $ASSIGNMENT_DIR
+    allow_failure: true
+    script:
+        - make assignment-tests
+    tags:
+        - linux
+        - docker
+
+
+
 #************************************ MA1 ***********************************#
 MA1-HelloWorld-build:
     stage: build
@@ -120,4 +140,15 @@ MA2-BSTAddRemove-Assignment-Tests:
     tags:
         - linux
         - docker
+
+
+#************************************ HW1 ***********************************#
+## Start HW1 - Big-O and Git written homework *******************************#
+# Run a test to find the PDF of the homework
+# Note: HW1 did not ship with a Makefile to do the test, but the test.sh script
+HW1-PDF-Check-Test:
+    extends: .hw-test
+    variables:
+        ASSIGNMENT_DIR: "HW1-BigO-Git"
+# End HW1 Tests ***************************************************************#
 
