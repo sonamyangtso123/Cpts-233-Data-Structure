@@ -83,9 +83,26 @@ public class BinarySearchTree<T extends Comparable<T>> extends Collection<T> {
 	}
 	
 	// Adds a new Element to the tree starting at root
-	// Microassignment: MA TODO
+	// Microassignment: MA TODO 
 	protected BinaryNode<T> addElementHelper(BinaryNode<T> root, T item)
 	{
+		if(root == null){
+			root = new BinaryNode<T>( item);
+			_size_counter ++;
+		}
+		else{
+		if(item.compareTo(root.getValue()) == 0 || item.compareTo(root.getValue())< 0){
+			root._left_child = new BinaryNode<T>(root.getLeftChild(),item);
+			_size_counter ++;
+
+		}
+		else{
+			root._right_child = new BinaryNode<T>(root.getRightChild(),item);
+			_size_counter ++;
+		}
+		}
+		
+		
 		// Pseudo code:
 		//  Check for null first
 		//  If null, create new node return pointer to that node		
@@ -123,7 +140,10 @@ public class BinarySearchTree<T extends Comparable<T>> extends Collection<T> {
 			if (_remove_counter % 2 == 0)
 			{
 				// Let's assume we are removing from the left when it's an even number
-				// MA TODO
+				// M TODO
+
+
+
 
 			}
 			else

@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - BSTAddRemove_main",
+            "request": "launch",
+            "mainClass": "BSTAddRemove_main"
+        }
+    ]
+}
