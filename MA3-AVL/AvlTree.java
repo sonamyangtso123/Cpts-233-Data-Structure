@@ -30,11 +30,7 @@ public class AvlTree<T extends Comparable<T>> extends Collection<T>
 	protected AvlNode<T> rotateRight(AvlNode<T> root)
 	{
 		// Check for null roots
-		if (root == null)
-			return root;
-
-		// Remove this return and replace with the rotate algorithm
-		return root;
+		s
 		
 		// New root comes from left side
 		// Reassign right child to new root's left child
@@ -51,7 +47,12 @@ public class AvlTree<T extends Comparable<T>> extends Collection<T>
 		if (root == null)
 			return root;
 
-		return root;
+			AvlNode temp = root.getRightChild();
+			root.setRightChild(temp.getLeftChild());
+			temp.setLeftChild(root);
+			setHeight(root);
+			setHeight(temp);
+		return temp;
 		
 		// New root comes from right side
 		// Reassign right child to new root's left child
