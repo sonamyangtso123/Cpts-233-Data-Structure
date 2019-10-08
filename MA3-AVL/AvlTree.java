@@ -33,14 +33,13 @@ public class AvlTree<T extends Comparable<T>> extends Collection<T>
         // Check for null roots
         if (root == null)
 			return root;
-			
-		AvlNode<T>currRoot= root;
-		 //creating a new root temp as current root's left child
-		AvlNode<T> temp = currRoot.getLeftChild();  
+		
+		//creating a new root temp as current root's left child
+		AvlNode <T> temp = root.getLeftChild();  
 		// reassigning   new node's right child to current root's left child
-		currRoot.setLeftChild(temp.getRightChild());
+		root.setLeftChild(temp.getRightChild());
 		//assignning current  root to new root's right child.
-		temp.setRightChild(currRoot);
+		temp.setRightChild(root);
 		
 		 //returning new root temp
         return temp;
@@ -53,13 +52,13 @@ public class AvlTree<T extends Comparable<T>> extends Collection<T>
         // Check for null roots
         if (root == null)
 			return root;
-			AvlNode currRoot = root;
+		
 		//creating a new root temp2 as current root's right child
-		AvlNode temp2 = currRoot.getRightChild();
+		AvlNode <T> temp2 = root.getRightChild();
 		// reassigning new root's left child to current root's right child  
-        currRoot.setRightChild(temp2.getLeftChild());
+        root.setRightChild(temp2.getLeftChild());
         //reassigning cuurent root to new roots left child
-		temp2.setLeftChild(currRoot);
+		temp2.setLeftChild(root);
 		
 		// returnign new root temp2
         return temp2;
@@ -77,30 +76,36 @@ public class AvlTree<T extends Comparable<T>> extends Collection<T>
         if (root == null)
             return root;
 
-        int balance_factor = root.getBalanceFactor();
-        if(balance_factor<-1){
-
-			
-            if ((calcNodeHeight(root.getLeftChild().getLeftChild())>= calcNodeHeight(root.getLeftChild().getRightChild()))){
+		int balance_factor = root.getBalanceFactor();
+		// Either right rotation or Left Right roation
+        if(balance_factor < -1){
+			// right Rotation when the balance factor for the root's left child is -1
+            if (root.getLeftChild().getBalanceFactor() == -1){
                 return rotateRight(root);
+                
             }
             else{
+				//Left right rotation
                 root.setLeftChild(rotateLeft(root.getLeftChild()));
                 return rotateRight(root);
-            
+
+            }
+		}
+		// Left rotation or Right Left rotation
+        else if(balance_factor > 1){
+			// Left rotation when balance factor for the root's right child is 1
+            if ((root.getRightChild().getBalanceFactor() == 1)){ 
+                return rotateLeft(root);
+
+            }
+            else {
+				// otherwise Right left rotation
+                root.setRightChild(rotateRight(root.getRightChild()));
+                return rotateLeft(root);
             }
         }
-        else if(balance_factor >1){
-           if ((calcNodeHeight(root.getRightChild().getRightChild())>= calcNodeHeight(root.getRightChild().getLeftChild()))){ 
-               return rotateLeft(root);
-               
-        }
-        else {
-            root.setRightChild(rotateRight(root.getRightChild()));
-            return rotateLeft(root);
-        }
-    }
-    setHeight(root);
+        setHeight(root);
+
 
         // MA TODO implement before this return statement!
         //  If you find an imbalance, you will need to either
