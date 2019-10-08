@@ -34,15 +34,15 @@ public class AvlTree<T extends Comparable<T>> extends Collection<T>
         if (root == null)
 			return root;
 		
-		//creating a new root temp as current root's left child
-		AvlNode <T> temp = root.getLeftChild();  
+		//creating a new root newRoot as current root's left child
+		AvlNode <T> newRoot = root.getLeftChild();  
 		// reassigning   new node's right child to current root's left child
-		root.setLeftChild(temp.getRightChild());
+		root.setLeftChild(newRoot.getRightChild());
 		//assignning current  root to new root's right child.
-		temp.setRightChild(root);
+		newRoot.setRightChild(root);
 		
-		 //returning new root temp
-        return temp;
+		 //returning new root newRoot
+        return newRoot;
 
     }
 
@@ -53,15 +53,15 @@ public class AvlTree<T extends Comparable<T>> extends Collection<T>
         if (root == null)
 			return root;
 		
-		//creating a new root temp2 as current root's right child
-		AvlNode <T> temp2 = root.getRightChild();
+		//creating a new root newRoot as current root's right child
+		AvlNode <T> newRoot = root.getRightChild();
 		// reassigning new root's left child to current root's right child  
-        root.setRightChild(temp2.getLeftChild());
+        root.setRightChild(newRoot.getLeftChild());
         //reassigning cuurent root to new roots left child
-		temp2.setLeftChild(root);
+		newRoot.setLeftChild(root);
 		
-		// returnign new root temp2
-        return temp2;
+		// returnign new root newRoot
+        return newRoot;
 
         
     }
