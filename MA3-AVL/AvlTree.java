@@ -22,12 +22,7 @@ public class AvlTree<T extends Comparable<T>> extends Collection<T>
     private int _size_counter = 0; 		// Keeps track of Tree's size
     protected AvlNode<T> _root = null;	// Tree's root node reference
 
-    //************************************************************************/
-    //** Start of MA TODOs 
-    //** There are three TODOs in this MA
-    //************************************************************************/
-
-    // MA TODO: Implement me FIRST!
+    
     protected AvlNode<T> rotateRight(AvlNode<T> root)
     {
         // Check for null roots
@@ -46,7 +41,7 @@ public class AvlTree<T extends Comparable<T>> extends Collection<T>
 
     }
 
-    // MA TODO: Implement me SECOND!
+    
     protected AvlNode<T> rotateLeft(AvlNode<T> root)
     {
         // Check for null roots
@@ -66,7 +61,7 @@ public class AvlTree<T extends Comparable<T>> extends Collection<T>
         
     }
 
-    // MA TODO: Implement me THIRD!
+   
     //  The purpose of this function is to figure out where the imbalance
     //   occurs within root (left or right) and return the result of the
     //   appropriate rotation (left or right) on root's child.
@@ -110,10 +105,7 @@ public class AvlTree<T extends Comparable<T>> extends Collection<T>
      return root;
     }
 
-    //************************************************************************/
-    //** End of MA TODOs */
-    //************************************************************************/
-
+    
     // Removes the largest element from the subtree starting at root
     protected AvlNode<T> removeLargest(AvlNode<T> root)
     {
