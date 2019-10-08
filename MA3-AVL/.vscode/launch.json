@@ -6,6 +6,7 @@
     "configurations": [
         {
             "type": "java",
+<<<<<<< HEAD:MA2-BSTAddRemoveHelpers/.vscode/launch.json
             "name": "Debug (Launch) - Current File",
             "request": "launch",
             "mainClass": "${file}"
@@ -13,8 +14,11 @@
         {
             "type": "java",
             "name": "Debug (Launch)-BSTAddRemove_main",
+=======
+            "name": "CodeLens (Launch) - AVL_main",
+>>>>>>> MA3-AVL:MA3-AVL/.vscode/launch.json
             "request": "launch",
-            "mainClass": "BSTAddRemove_main"
+            "mainClass": "AVL_main"
         }
     ]
 }
