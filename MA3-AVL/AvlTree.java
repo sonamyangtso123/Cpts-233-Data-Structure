@@ -472,17 +472,7 @@ public class AvlTree<T extends Comparable<T>> extends Collection<T>
         setHeight(root);
 
 
-        // MA TODO implement before this return statement!
-        //  If you find an imbalance, you will need to either
-        //  return the result of rotateLeft or rotateRight
-
-        // Calculate balance status
-        // If imblanced, check for the four AVL tree cases
-        // Rotate as required, which returns a new root pointer
-        // Set new height on new root
-        // Return updated root
-
-        return root;
+     return root;
     }
 
     //************************************************************************/
