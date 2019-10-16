@@ -50,7 +50,7 @@ public class MA_HashTable_Add_Remove_main
 		int return_code = 0;
 		System.out.print("Test: isEmpty() interface -- ");
 		LinearHashTable<String, String> ht = new LinearHashTable<>(new SimpleStringHasher());
-		if( ht.isEmpty() == false ) {
+		if( ht.isEmpty() == false) {
 			System.out.println(" FAIL");
 			return_code = 1;	// Error, why isn't it empty?
 		} else {

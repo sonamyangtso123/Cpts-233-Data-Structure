@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - MA_HashTable_Add_Remove_main",
+            "request": "launch",
+            "mainClass": "MA_HashTable_Add_Remove_main"
+        }
+    ]
+}
