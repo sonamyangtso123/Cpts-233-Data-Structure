@@ -41,31 +41,28 @@ class HashMapDupDetector extends StringDupDetectorBase {
         // NOTE: The duplicates ArrayList *cannot* have duplicates within itself!
         ArrayList<String> duplicates = new ArrayList<>(); // Lists a set of strings that appear more than once
 
-        HashMap<String, String> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>(); // hashtable that accept strings that appear once for their key
+        HashMap<String, String> duplicateLists = new HashMap<>();// hashtable that accept strings that appear more than
+                                                                 // once
 
-        HashMap<String, String> duplicateLists = new HashMap<>();
+        for (int i = 0; i < strings.size(); i++) { // iterate through each string in a list of Strings
+            String currentStr = strings.get(i); // get the current index string
 
-        for (int i = 0; i < strings.size(); i++) {
-            String str = strings.get(i);
-
-            if (!map.containsKey(str)) {
-                map.put(str, null);
+            if (!map.containsKey(currentStr)) { // if current string is not in the hash table as key
+                map.put(currentStr, null); // add to hashtable for key and put null for value
             } else {
 
-                duplicateLists.put(str, null);
+                duplicateLists.put(currentStr, null);// if current string is present in the hash table, add here
             }
         }
 
-        for (String key : duplicateLists.keySet()) {
-            duplicates.add(key);
+        for (String key : duplicateLists.keySet()) { // iterate through each key
+            duplicates.add(key); // add to an arraylist that accept strings that appear more than once
         }
 
-        // Algorithm begins here
-
-        // PA1 CODE GOES HERE! -- MUST use the HashMap (map) for your solution, not
-        // Crandall's Brute Force searching!
-
-        // Should have an ArrayList of duplicates to return... right?
+        // return the string lists which appear more than onoce from the parameter
+        // strings.
         return duplicates;
+
     }
 }
