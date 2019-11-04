@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - StringDupDetection_main",
+            "request": "launch",
+            "mainClass": "StringDupDetection_main"
+        }
+    ]
+}
