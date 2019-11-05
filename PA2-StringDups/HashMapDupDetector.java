@@ -41,27 +41,23 @@ class HashMapDupDetector extends StringDupDetectorBase {
         // NOTE: The duplicates ArrayList *cannot* have duplicates within itself!
         ArrayList<String> duplicates = new ArrayList<>(); // Lists a set of strings that appear more than once
 
-        HashMap<String, String> map = new HashMap<>(); // hashtable that accept strings that appear once for their key
-        HashMap<String, String> duplicateLists = new HashMap<>();// hashtable that accept strings that appear more than
-                                                                 // once
+        HashMap<String, String> map = new HashMap<>(); // hashtable that accept strings for thier key
 
-        for (int i = 0; i < strings.size(); i++) { // iterate through each string in a list of Strings
-            String currentStr = strings.get(i); // get the current index string
-
-            if (!map.containsKey(currentStr)) { // if current string is not in the hash table as key
-                map.put(currentStr, null); // add to hashtable for key and put null for value
+        for (int i = 0; i < strings.size(); i++) { // iterate through each string in an ArrayList of Strings
+            String str = strings.get(i); // get the string from index i
+            // if hashtable has current index string and duplicate arraylist doesnot 
+            if (map.containsKey(str) && (!duplicates.contains(str))) {
+                duplicates.add(str); // add the current index to duplicate arraylist 
             } else {
 
-                duplicateLists.put(currentStr, null);// if current string is present in the hash table, add here
+                map.put(str, null);// otherwise add into hashtable
             }
         }
 
-        for (String key : duplicateLists.keySet()) { // iterate through each key
-            duplicates.add(key); // add to an arraylist that accept strings that appear more than once
-        }
+       
 
-        // return the string lists which appear more than onoce from the parameter
-        // strings.
+        // return the string lists which appear more than once from the parameter string
+        
         return duplicates;
 
     }
