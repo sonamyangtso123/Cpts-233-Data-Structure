@@ -269,9 +269,117 @@ MA4-HashTable-AddRem-Assignment-Tests:
         - linux
         - docker
 
+#************************************ MA5 ***********************************#
+MA5-Sorting-build:
+    stage: build
+    variables:
+        ASSIGNMENT_DIR: "MA5-Sorting"
+        JAVA_HOME: "/usr/lib/jvm/java-1.8-openjdk"
+    before_script:
+        - echo "Building project - $ASSIGNMENT_DIR"
+        - *projectmergetest                     # See multiline block above
+        - export JAVA_HOME                      # Location for JAVA in Alpine
+        - export PATH="$JAVA_HOME/bin:$PATH"    # Add Java bin dir to path
+        - apk add --update openjdk8 make >> /dev/null # Install OpenJDK8
+        - cd $ASSIGNMENT_DIR                    # Go into project dir
+    script:
+        - echo "Using GNU make to build project"
+        - make build
+    allow_failure: true
+    tags:
+        - linux
+        - docker
+
+MA5-Sorting-Assignment-Tests:
+    stage: assignment-tests
+    variables:
+        ASSIGNMENT_DIR: "MA5-Sorting"
+        JAVA_HOME: "/usr/lib/jvm/java-1.8-openjdk"
+    before_script:
+        - echo "Building project - $ASSIGNMENT_DIR"
+        - *projectmergetest            # See multiline block above
+        - export JAVA_HOME
+        - export PATH="$JAVA_HOME/bin:$PATH"
+        - apk add --update openjdk8 make >> /dev/null
+        - cd $ASSIGNMENT_DIR
+    script:
+        - echo "Using GNU make to build project"
+        - make build
+        - echo "Running project with tests"
+        - make test
+    allow_failure: true
+    tags:
+        - linux
+        - docker
+
+MA5-Sorting-Assignment-Tests-Thousands:
+    stage: assignment-tests
+    variables:
+        ASSIGNMENT_DIR: "MA5-Sorting"
+        JAVA_HOME: "/usr/lib/jvm/java-1.8-openjdk"
+    before_script:
+        - echo "Building project - $ASSIGNMENT_DIR"
+        - *projectmergetest            # See multiline block above
+        - export JAVA_HOME
+        - export PATH="$JAVA_HOME/bin:$PATH"
+        - apk add --update openjdk8 make >> /dev/null
+        - cd $ASSIGNMENT_DIR
+    script:
+        - echo "Using GNU make to build project"
+        - make build
+        - echo "Running project with tests"
+        - make test_thousands
+    allow_failure: true
+    tags:
+        - linux
+        - docker
 
 
-# homeworks
+#************************************ MA6 ***********************************#
+MA6-Heaps-build:
+    stage: build
+    variables:
+        ASSIGNMENT_DIR: "MA6-Heaps"
+        JAVA_HOME: "/usr/lib/jvm/java-1.8-openjdk"
+    before_script:
+        - echo "Building project - $ASSIGNMENT_DIR"
+        - *projectmergetest                     # See multiline block above
+        - export JAVA_HOME                      # Location for JAVA in Alpine
+        - export PATH="$JAVA_HOME/bin:$PATH"    # Add Java bin dir to path
+        - apk add --update openjdk8 make >> /dev/null # Install OpenJDK8
+        - cd $ASSIGNMENT_DIR                    # Go into project dir
+    script:
+        - echo "Using GNU make to build project"
+        - make build
+    allow_failure: true
+    tags:
+        - linux
+        - docker
+
+MA6-Heaps-Assignment-Tests:
+    stage: assignment-tests
+    variables:
+        ASSIGNMENT_DIR: "MA6-Heaps"
+        JAVA_HOME: "/usr/lib/jvm/java-1.8-openjdk"
+    before_script:
+        - echo "Building project - $ASSIGNMENT_DIR"
+        - *projectmergetest            # See multiline block above
+        - export JAVA_HOME
+        - export PATH="$JAVA_HOME/bin:$PATH"
+        - apk add --update openjdk8 make >> /dev/null
+        - cd $ASSIGNMENT_DIR
+    script:
+        - echo "Using GNU make to build project"
+        - make build
+        - echo "Running project with tests"
+        - make test
+    allow_failure: true
+    tags:
+        - linux
+        - docker
+
+
+# Homeworks
 #************************************ HW1 ***********************************#
 ## Start HW1 - Big-O and Git written homework *******************************#
 # Run a test to find the PDF of the homework
@@ -296,4 +404,12 @@ HW3-HashHeapSort-Check-Test:
     variables:
         ASSIGNMENT_DIR: "HW3-HashHeapSort"
 # End HW3 Tests ***************************************************************#
+
+#************************************ HW4 ***********************************#
+## Start HW4 - Graphing written homework ***************#
+HW4-Graphs-Check-Test:
+    extends: .hw-test
+    variables:
+        ASSIGNMENT_DIR: "HW4-Graphs"
+# End HW4 Tests ***************************************************************#
 
