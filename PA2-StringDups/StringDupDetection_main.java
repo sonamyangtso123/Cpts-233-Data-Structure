@@ -15,22 +15,20 @@
 
 import java.util.ArrayList;
 
-
 // Main object and interface for this program
-public class StringDupDetection_main
-{
+public class StringDupDetection_main {
 
 	public static void main(String[] args) {
 		small_demo();
 
 		int testing_result = run_tests();
 
-		if(testing_result > 0 ) {
+		if (testing_result > 0) {
 			System.out.println("Some tests didn't pass.");
-		}else{
+		} else {
 			System.out.println("All tests passed - SUCCESS!.");
 		}
-		System.exit(testing_result);                    // 0 means all tests pass
+		System.exit(testing_result); // 0 means all tests pass
 	}
 
 	// Suite of tests on our implementation
@@ -47,9 +45,9 @@ public class StringDupDetection_main
 		detector_algorithms.add(bruteForce);
 		detector_algorithms.add(cleverBigOhOne);
 
-		for( StringDupDetectorBase detector : detector_algorithms ) {
+		for (StringDupDetectorBase detector : detector_algorithms) {
 			System.out.println(" -- Running Tests on Detector algorithm: " + detector.algorithm_name);
-			for( TestSetBase set : testing_vectors.allSets ) {
+			for (TestSetBase set : testing_vectors.allSets) {
 				return_code |= test_a_set(set, detector);
 			}
 			System.out.println("\n -- DONE with Detector " + detector.algorithm_name + "\n\n");
@@ -75,14 +73,14 @@ public class StringDupDetection_main
 
 		res.set_duplicates_arraylist(dups_found);
 
-		if( res.is_correct_dups() == false ) {
+		if (res.is_correct_dups() == false) {
 			System.out.println("\n ERR ==> Results did not pass, showing verbose output ==> ");
 			res.printOut(true);
 		} else {
 			res.printOutCompact();
 		}
 
-		if( res.is_correct_dups() == false ) {
+		if (res.is_correct_dups() == false) {
 			return_code++;
 		}
 
@@ -90,8 +88,7 @@ public class StringDupDetection_main
 	}
 
 	// Small demo of duplicates detection operating
-    public static void small_demo()
-    {
+	public static void small_demo() {
 		System.out.println(" ----- Small Demo of Duplicates Detection Operating ----- ");
 		TestingSets testing_vectors = new TestingSets();
 		TestSetBase set = testing_vectors.small;
@@ -113,12 +110,12 @@ public class StringDupDetection_main
 		res.set_duplicates_arraylist(dups_found);
 
 		System.out.print(" Strings to search: \n\t");
-		for( int i = 0; i < set.strings.size(); i++ ) {
+		for (int i = 0; i < set.strings.size(); i++) {
 			System.out.print(set.strings.get(i) + ",");
 		}
 		System.out.println();
 		System.out.print(" dups to find: \n\t");
-		for( int i = 0; i < set.dups.size(); i++ ) {
+		for (int i = 0; i < set.dups.size(); i++) {
 			System.out.print(set.dups.get(i) + ",");
 		}
 		System.out.println();
@@ -126,12 +123,12 @@ public class StringDupDetection_main
 		boolean is_correct = res.is_correct_dups();
 
 		System.out.print(" dups found: \n\t");
-		for( int i = 0; i < res.duplicates.size(); i++ ) {
+		for (int i = 0; i < res.duplicates.size(); i++) {
 			System.out.print(res.duplicates.get(i) + ",");
 		}
 		System.out.println();
-		System.out.print( "Is that correct? ");
-		if( is_correct ) {
+		System.out.print("Is that correct? ");
+		if (is_correct) {
 			System.out.println("It's correct");
 		} else {
 			System.out.println("NOPE is badness");
@@ -139,5 +136,5 @@ public class StringDupDetection_main
 
 		System.out.println("Showing results dump for small test: ");
 		res.printOut(true);
-    }
+	}
 }

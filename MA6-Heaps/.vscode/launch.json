@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Heaps_main",
+            "request": "launch",
+            "mainClass": "Heaps_main"
+        }
+    ]
+}
