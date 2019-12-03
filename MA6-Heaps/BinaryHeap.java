@@ -104,68 +104,72 @@ public class BinaryHeap<AnyType extends Comparable<? super AnyType>>
     // ********************************************************************* //
     //  Microassignment Section: Implement percolations
     // ********************************************************************* //
-    public void insert(AnyType x) 
+   public void insert(AnyType x) 
     {
-        
-    
-     
-        if(currentSize < data.size())
+        if(currentSize >=data.size())
         {
-        
-			data.add(currentSize,x);
+            currentSize=currentSize*2;
+            ensureHeapSize(currentSize);
 
-			
+        }
 
-			while(data.get(currentSize).compareTo(data.get(currentSize/2)) < 0)
-			{
-				//swap elements
-				AnyType temp = data.get(currentSize/2);
-				data.set(currentSize/2, data.get(currentSize));
-				data.set(currentSize, temp);
+        if(currentSize == 0)
+        {
 
-				
+            data.add(currentSize,x);
+            currentSize++;
+
+        }
+        else{
+            int posi = currentSize -1;
+
+            while(data.get(posi/2).compareTo(x)>0)
+            {
+
+                data.set(posi+1, data.get(posi/2));
+                posi = posi/2;
+
             }
+            data.set(posi-1,x);
+            currentSize++;
         }
 
-		
-        else
-        {
         
-			return;
-        }
-    
     }
 
-
-	
-
-        
-
+    // MA TODO: Write some kind of heap/percolate insert function
     private void percolateDown( int hole )
     {
-        if(currentSize <data.size())
-        {
-            AnyType temp = data.get(hole);
+
+        while ((hole +1 )*2 <= currentSize){
             int i = hole;
-            while((temp.compareTo(data.get(i*2))>0)||(temp.compareTo(data.get(i*2 +1))>0))
-            {
-                if ((temp.compareTo(data.get(i))>0))
-                {
-                   
-                 AnyType x = data.get(i);
-                data.set(i, data.get(i*2));
-                data.set(i*2, x);
-                }
-                else
-                {
-                    
-                 AnyType x = data.get(i);
-                data.set(i, data.get(i*2+1));
-                data.set(i*2+1,x);
-                }
+            int leftChild= i*2 +1;
+            int rightChild = i*2 + 2;
+            AnyType temp = data.get(i);
+
+            if(temp.compareTo(data.get(leftChild))<0){
+                break;
             }
 
-        }	
+        
+            if (data.get(rightChild)!=null && data.get(leftChild).compareTo(data.get(rightChild))>0)
+            {
+
+                data.set(i, data.get(rightChild));
+                data.set(rightChild, temp);
+                i = rightChild;
+            }
+
+            else
+            {
+
+                data.set(i, data.get(leftChild));
+                data.set(leftChild,temp);
+                i= leftChild;
+            }
+
+        }
+        	
     }
 }
 
