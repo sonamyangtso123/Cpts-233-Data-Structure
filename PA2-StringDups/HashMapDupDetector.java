@@ -32,23 +32,33 @@ class HashMapDupDetector extends StringDupDetectorBase {
     }
 
     // The one function that does the duplicates detection for your algorithm.
-    //  This function is called by the testing code
-    //  It returns a list of duplicate strings found - NOTE: you CANNOT have duplicates in the results themselves!
+    // This function is called by the testing code
+    // It returns a list of duplicate strings found - NOTE: you CANNOT have
+    // duplicates in the results themselves!
     @Override
     public ArrayList<String> doDupDetection(ArrayList<String> strings) {
         // These two arrays are stored in the results when your algorithm is done
         // NOTE: The duplicates ArrayList *cannot* have duplicates within itself!
-        ArrayList<String> duplicates = new ArrayList<>();   // Lists a set of strings that appear more than once
+        ArrayList<String> duplicates = new ArrayList<>(); // Lists a set of strings that appear more than once
 
-        HashMap<String, String> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>(); // hashtable that accept strings for thier key
 
-        // Algorithm begins here
+        for (int i = 0; i < strings.size(); i++) { // iterate through each string in an ArrayList of Strings
+            String str = strings.get(i); // get the string from index i
+            // if hashtable has current index string and duplicate arraylist doesnot 
+            if (map.containsKey(str) && (!duplicates.contains(str))) {
+                duplicates.add(str); // add the current index to duplicate arraylist 
+            } else {
 
+                map.put(str, null);// otherwise add into hashtable
+            }
+        }
 
-        // PA1 CODE GOES HERE! -- MUST use the HashMap (map) for your solution, not Crandall's Brute Force searching!
+       
 
-
-        // Should have an ArrayList of duplicates to return... right?
+        // return the string lists which appear more than once from the parameter string
+        
         return duplicates;
+
     }
 }

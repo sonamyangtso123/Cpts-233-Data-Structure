@@ -96,7 +96,7 @@ public class BinaryHeap<AnyType extends Comparable<? super AnyType>>
         AnyType minItem = findMin( );
         data.set(0, data.get(--currentSize));
         data.set(currentSize, null);
-        percolateDown( 0 );
+        //percolateDown( 0 );
 
         return minItem;
     }
@@ -104,12 +104,68 @@ public class BinaryHeap<AnyType extends Comparable<? super AnyType>>
     // ********************************************************************* //
     //  Microassignment Section: Implement percolations
     // ********************************************************************* //
-    public void insert(AnyType x) {
-        // MA TODO: Write some kind of heap/percolate insert function
+    public void insert(AnyType x) 
+    {
+        
+    
+     
+        if(currentSize < data.size())
+        {
+        
+			data.add(currentSize,x);
+
+			
+
+			while(data.get(currentSize).compareTo(data.get(currentSize/2)) < 0)
+			{
+				//swap elements
+				AnyType temp = data.get(currentSize/2);
+				data.set(currentSize/2, data.get(currentSize));
+				data.set(currentSize, temp);
+
+				
+            }
+        }
+
+		
+        else
+        {
+        
+			return;
+        }
+    
     }
+
+
+	
+
+        
 
     private void percolateDown( int hole )
     {
-        // MA TODO: Write some kind of heap/percolateUp function
+        if(currentSize <data.size())
+        {
+            AnyType temp = data.get(hole);
+            int i = hole;
+            while((temp.compareTo(data.get(i*2))>0)||(temp.compareTo(data.get(i*2 +1))>0))
+            {
+                if ((temp.compareTo(data.get(i))>0))
+                {
+                   
+                 AnyType x = data.get(i);
+                data.set(i, data.get(i*2));
+                data.set(i*2, x);
+                }
+                else
+                {
+                    
+                 AnyType x = data.get(i);
+                data.set(i, data.get(i*2+1));
+                data.set(i*2+1,x);
+                }
+            }
+
+        }	
     }
 }
+
